@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,10 +10,15 @@ import org.openqa.selenium.support.ui.Select;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NavigationTest {
+    private  WebDriver driver;
+
+    @BeforeEach
+    public void setup(){
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\AutomationBasicSelenium\\src\\main\\resources\\chromedriver.exe");
+        driver = new ChromeDriver();
+    }
     @Test
     public void navigateToGoogle() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\AutomationBasicSelenium\\src\\main\\resources\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
         driver.get("https://www.netflix.com/browse");
         driver.findElement(By.cssSelector("input[autocomplete='email']")).sendKeys("danielfernandolargo@gmail.com");
         driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Dorlildan7896");
@@ -23,8 +29,6 @@ public class NavigationTest {
 
     @Test
     public void navigateToFacebook() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\AutomationBasicSelenium\\src\\main\\resources\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
         driver.get("https://www.facebook.com");
         driver.findElement(By.id("email")).sendKeys("algo");
         driver.findElement(By.xpath("//input[contains(@placeholder,'Contrase')]")).sendKeys("password");
@@ -35,8 +39,6 @@ public class NavigationTest {
 
     @Test
     public void navigateToMercadoLibre() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\AutomationBasicSelenium\\src\\main\\resources\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
         driver.get("https://www.mercadolibre.com");
         String localizacion = String.valueOf(driver.findElement(By.xpath("//*[contains(text(),'Colombia')]")).getLocation());
         System.out.println("Esta es la localizacion del elemento" + localizacion);
@@ -53,8 +55,6 @@ public class NavigationTest {
 
     @Test
     public void navigateToAutomationExercise() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\AutomationBasicSelenium\\src\\main\\resources\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
         driver.get("https://automationexercise.com/");
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("//*[contains(text(),'Subscription')]")));
@@ -69,8 +69,6 @@ public class NavigationTest {
 
     @Test
     public void navigateToSelectorGuru99() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\BasicAutomationWithSelenium\\src\\main\\resources\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
         driver.get("https://demo.guru99.com/test/newtours/register.php");
         WebElement selector = driver.findElement(By.name("country"));
         Select selectOnWeb = new Select(selector);

@@ -69,7 +69,7 @@ public class NavigationTest {
 
     @Test
     public void navigateToSelectorGuru99() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\AutomationBasicSelenium\\src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\danie\\Documents\\Cursos\\Selenium\\BasicAutomationWithSelenium\\src\\main\\resources\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://demo.guru99.com/test/newtours/register.php");
         WebElement selector = driver.findElement(By.name("country"));

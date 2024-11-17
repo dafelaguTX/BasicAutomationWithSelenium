@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="NavigationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-17T16:12:09" hostname="LAPTOP-INQP3QOP" time="12.356">
+<testsuite name="NavigationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-17T20:47:57" hostname="LAPTOP-INQP3QOP" time="14.2">
   <properties/>
-  <testcase name="navigateToSelectorGuru99()" classname="NavigationTest" time="12.356"/>
+  <testcase name="navigateToSelectorGuru99()" classname="NavigationTest" time="14.2"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Starting ChromeDriver 131.0.6778.69 (77e2244bbcda3ab9362d5b8aeeb006a86a6d4832-refs/branch-heads/6778@{#2141}) on port 26905
+  <system-err><![CDATA[Starting ChromeDriver 131.0.6778.69 (77e2244bbcda3ab9362d5b8aeeb006a86a6d4832-refs/branch-heads/6778@{#2141}) on port 29166
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
-ChromeDriver was started successfully on port 26905.
-nov. 17, 2024 11:12:10 A. M. org.openqa.selenium.remote.ProtocolHandshake createSession
+ChromeDriver was started successfully on port 29166.
+nov. 17, 2024 3:47:58 P. M. org.openqa.selenium.remote.ProtocolHandshake createSession
 INFORMACIÓN: Detected dialect: W3C
 ]]></system-err>
 </testsuite>

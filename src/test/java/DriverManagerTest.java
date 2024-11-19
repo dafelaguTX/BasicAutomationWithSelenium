@@ -59,7 +59,7 @@ public class DriverManagerTest {
         orderReference.sendKeys("Pan");
 
         WebElement message = driver.findElement(By.xpath("//textarea[@id='message']"));
-        message.sendKeys("Hola, ten un gran día");
+        message.sendKeys("Hola, ten un gran dia");
 
         WebElement submitMessage = driver.findElement(By.xpath("//button[@class='btn btn-primary']"));
         submitMessage.click();

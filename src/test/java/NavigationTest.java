@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -10,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -179,5 +182,55 @@ public class NavigationTest {
             System.out.println("Revisar que el importe de la clase de excepcion sea el de selenium sino, no va a esperar lo indicado");
         }
 
+    }
+
+    @Test
+    public void searchOnList() {
+        driver.navigate().to("https://www.mercadolibre.com");
+        driver.manage().window().maximize();
+        driver.findElement(By.xpath("//*[@id='CO']")).click();
+
+        driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
+        WebElement search = driver.findElement(By.cssSelector("input#cb1-edit"));
+        search.sendKeys("guitarra electrica");
+        search.sendKeys(Keys.ENTER);
+
+        List<WebElement> results = driver.findElements(By.cssSelector("ol[class*='ui-search-layout'] li"));
+        System.out.println("el numero de elementos es" + results.size());
+
+        By priceBy = By.cssSelector("div[class*='poly-component__price'] span[class*='andes-money-amount andes-money-amount--cents-superscript'] span[class*='andes-money-amount__fraction']");
+        By nameBy = By.cssSelector("h2");
+
+        for(WebElement result: results){
+            System.out.println(".........................");
+            System.out.println("el precio es: "+ result.findElement(priceBy).getText());
+            System.out.println("el nombre es: "+ result.findElement(nameBy).getText());
+            System.out.println(".........................");
+        }
+
+        Random rand = new Random();
+        WebElement randomElement = results.get(rand.nextInt(results.size()));
+        WebElement expectedPriceLocator = randomElement.findElement(priceBy);
+        WebElement expectedNameLocator = randomElement.findElement(nameBy);
+
+        String expectedPrice = expectedPriceLocator.getText();
+        String expectedName = expectedNameLocator.getText();
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", randomElement);
+
+        expectedNameLocator.click();
+        By nameInDeailBy = By.cssSelector("h1[class*='ui-pdp-title']");
+        By priceInDeailBy = By.cssSelector("span[class*='andes-money-amount__fraction']");
+
+        String actualPrice = driver.findElement(priceInDeailBy).getText();
+        String actualName = driver.findElement(nameInDeailBy).getText();
+
+        System.out.println("\nexpected: "+ expectedPrice + " actual: "+ actualPrice);
+        System.out.println("\nactual: "+ expectedName + " actual: "+ actualName);
+        Assertions.assertAll(
+                ()-> assertTrue(expectedPrice.equals(actualPrice),"No coinciden los precios"),
+                ()-> assertTrue(expectedName.contains(actualName),"No coinciden los nombres")
+        );
     }
 }

@@ -50,6 +50,13 @@ public class NavigationTest {
     }
 
     @Test
+    public void navigateToDonationPage() throws InterruptedException {
+        driver.get("https://my.fsf.org/donate");
+        driver.findElement(By.xpath("//*[contains(text(),'100.00')]")).click();
+        Thread.sleep(3000);
+    }
+
+    @Test
     public void navigateToMercadoLibre() throws InterruptedException {
         driver.get("https://www.mercadolibre.com");
         String localizacion = String.valueOf(driver.findElement(By.xpath("//*[contains(text(),'Colombia')]")).getLocation());
